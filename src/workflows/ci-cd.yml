@@ -1,0 +1,283 @@
+name: KAAL CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  NODE_VERSION: '18.x'
+
+jobs:
+  # ===================================
+  # JOB 1: Code Quality & Linting
+  # ===================================
+  lint:
+    name: 🔍 Lint & Format Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: true
+      
+      - name: Check TypeScript
+        run: npx tsc --noEmit
+      
+      - name: Upload lint results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-results
+          path: |
+            eslint-report.json
+          retention-days: 7
+
+  # ===================================
+  # JOB 2: Build Application
+  # ===================================
+  build:
+    name: 🏗️ Build Application
+    runs-on: ubuntu-latest
+    needs: lint
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Create .env file for build
+        run: |
+          echo "VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}" >> .env
+          echo "VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}" >> .env
+          echo "VITE_APP_URL=${{ secrets.VITE_APP_URL }}" >> .env
+      
+      - name: Build application
+        run: npm run build
+      
+      - name: Check build size
+        run: |
+          echo "Build completed successfully!"
+          du -sh dist/
+          find dist/ -type f -name "*.js" -exec du -h {} + | sort -rh | head -10
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-dist
+          path: dist/
+          retention-days: 7
+
+  # ===================================
+  # JOB 3: Run Tests (when available)
+  # ===================================
+  test:
+    name: 🧪 Run Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run unit tests
+        run: |
+          echo "Test suite will run here when implemented"
+          # npm test -- --coverage
+        continue-on-error: true
+      
+      - name: Upload coverage reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7
+
+  # ===================================
+  # JOB 4: Security Audit
+  # ===================================
+  security:
+    name: 🔒 Security Audit
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+      
+      - name: Check for known vulnerabilities
+        run: |
+          npm audit --json > audit-report.json || true
+          cat audit-report.json
+      
+      - name: Upload security report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-audit
+          path: audit-report.json
+          retention-days: 7
+
+  # ===================================
+  # JOB 5: Deploy to Vercel (Production)
+  # ===================================
+  deploy-production:
+    name: 🚀 Deploy to Production (Vercel)
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    environment:
+      name: production
+      url: https://kaal.vercel.app
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-dist
+          path: dist/
+      
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./
+      
+      - name: Post deployment notification
+        run: |
+          echo "✅ Production deployment successful!"
+          echo "URL: https://kaal.vercel.app"
+
+  # ===================================
+  # JOB 6: Deploy to Preview (Develop)
+  # ===================================
+  deploy-preview:
+    name: 🔍 Deploy to Preview (Vercel)
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    
+    environment:
+      name: preview
+      url: https://kaal-preview.vercel.app
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-dist
+          path: dist/
+      
+      - name: Deploy to Vercel Preview
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+      
+      - name: Post preview notification
+        run: |
+          echo "✅ Preview deployment successful!"
+          echo "URL: https://kaal-preview.vercel.app"
+
+  # ===================================
+  # JOB 7: Performance Analysis
+  # ===================================
+  performance:
+    name: ⚡ Performance Analysis
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-dist
+          path: dist/
+      
+      - name: Analyze bundle size
+        run: |
+          echo "📦 Bundle Size Analysis"
+          echo "======================="
+          du -sh dist/
+          echo ""
+          echo "Largest JavaScript files:"
+          find dist/ -type f -name "*.js" -exec du -h {} + | sort -rh | head -10
+          echo ""
+          echo "Largest CSS files:"
+          find dist/ -type f -name "*.css" -exec du -h {} + | sort -rh | head -5
+      
+      - name: Check for large files
+        run: |
+          echo "Checking for files larger than 500KB..."
+          find dist/ -type f -size +500k -exec ls -lh {} \;
+
+  # ===================================
+  # JOB 8: Notify on Completion
+  # ===================================
+  notify:
+    name: 📢 Notify Team
+    runs-on: ubuntu-latest
+    needs: [deploy-production, deploy-preview]
+    if: always()
+    
+    steps:
+      - name: Send notification
+        run: |
+          echo "Pipeline completed!"
+          echo "Status: ${{ needs.deploy-production.result }} (Production)"
+          echo "Status: ${{ needs.deploy-preview.result }} (Preview)"
