@@ -14,7 +14,7 @@ import {
 import { contextEngine, UserContext, UserVitals, ProactiveAction, WinEvent } from '../services/context-engine';
 import { winDetector } from '../services/win-detector';
 import { agentActions } from '../services/agent-actions';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 const F = {
   display: 'var(--font-display)',

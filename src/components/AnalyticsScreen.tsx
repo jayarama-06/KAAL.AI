@@ -9,7 +9,7 @@ import {
   ResponsiveContainer, BarChart, Bar, Legend
 } from "recharts";
 import { TimelineScreen } from "./TimelineScreen";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { useAnalytics } from "../hooks/useAnalytics";
 import { ScreenHeader, SCREEN_ANIMATIONS } from "./ui/ScreenHeader";
 

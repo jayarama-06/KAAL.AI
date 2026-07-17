@@ -4,7 +4,7 @@ import {
 } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import { useNavigate } from "react-router";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { useEnergyTracking } from "../hooks/useEnergyTracking";
 import { ScreenHeader, SCREEN_ANIMATIONS } from "./ui/ScreenHeader";
 

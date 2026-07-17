@@ -36,7 +36,7 @@ import {
   getCurrentHourInTimezone 
 } from '../lib/timezone-service';
 import { supabase } from '../services/supabase-client';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 const INTENT_BUTTONS: { value: Intent; emoji: string; label: string }[] = [
   { value: 'overwhelmed', emoji: '😰', label: "I'm overwhelmed" },

@@ -11,7 +11,7 @@ import { useTasks } from "../hooks/useTasks";
 import { useProjects } from "../hooks/useProjects";
 import { Task } from "../services/task-service";
 import { useSettings } from "../context/SettingsContext";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { ScreenHeader, SCREEN_ANIMATIONS } from "./ui/ScreenHeader";
 import { TaskSkeleton } from "./ui/InfiniteScroll";
 

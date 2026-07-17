@@ -2,8 +2,8 @@ import { Hono } from "npm:hono";
 import { cors } from "npm:hono/cors";
 import { logger } from "npm:hono/logger";
 import * as kv from "./kv_store.tsx";
-import { createClient } from "npm:@supabase/supabase-js@2";
-import { Client } from "npm:pg@8.11.3";
+import { createClient } from "npm:@supabase/supabase-js";
+import { Client } from "npm:pg";
 
 const app = new Hono();
 

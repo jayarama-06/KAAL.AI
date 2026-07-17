@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, X, ExternalLink, RefreshCw, Zap, Lock } from 'lucide-react';
 import { integrationHub, IntegrationMeta } from '../services/integration-hub';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 const F = {
   display: 'var(--font-display)',

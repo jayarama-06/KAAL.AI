@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "vite-env.d.ts",
+    "services/supabase-client.ts",
+    "services/sentry-config.ts"
+  ],
+  "exclude": ["node_modules", "dist", "coverage", "supabase/functions/**"]
+}

@@ -40,7 +40,7 @@ export function initSentry() {
     environment: window.location.hostname === 'localhost' ? 'development' : 'production',
     
     // Release tracking (optional - update with your version)
-    release: 'kaal@1.0.0',
+    release: 'kaal',
     
     // Ignore common errors that aren't actionable
     ignoreErrors: [

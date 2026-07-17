@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { X, Zap, Brain, Heart, Clock, MapPin, Volume2 } from "lucide-react";
 import { supabase } from "../services/supabase-client";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 interface EnergyCheckInModalProps {
   isOpen: boolean;

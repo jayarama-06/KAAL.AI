@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { saveStatesService, SaveState, StateUsageLog } from '../services/supabase-service';
 
 const DEFAULT_STATES: Omit<SaveState, 'id' | 'userId'>[] = [

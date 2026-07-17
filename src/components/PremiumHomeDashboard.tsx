@@ -8,7 +8,7 @@ import { FocusFlowModal } from "./FocusFlowModal";
 import { useNavigate } from "react-router";
 import { useProfile } from "../context/ProfileContext";
 import { storageService } from "../services/storage-service";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { useTasks } from "../hooks/useTasks";
 import { AIStatusChip } from "./ProactiveAICoach";
 import { proactiveAI } from "../services/proactive-ai";

@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { FocusFlowModal } from "./FocusFlowModal";
 import { useProfile } from "../context/ProfileContext";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { useSaveStates } from "../hooks/useSaveStates";
 
 export function SaveStatesScreen() {

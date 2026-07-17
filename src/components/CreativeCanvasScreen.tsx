@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Brain, Trash2, X, Edit3, Link as LinkIcon, Video, FileText,

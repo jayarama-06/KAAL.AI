@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { X, Zap, Clock, ArrowRight, ChevronDown } from "lucide-react";
 import { BacklogItem } from "../services/storage-service";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 interface AddBacklogModalProps {
   isOpen: boolean;

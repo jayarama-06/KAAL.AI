@@ -9,7 +9,7 @@ import {
 import { EventCreationModal, EventData } from "./EventCreationModal";
 import { FocusSessionPanel, SessionData } from "./FocusSessionPanel";
 import { useProfile } from "../context/ProfileContext";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { useNavigate } from "react-router";
 import { NotificationCenter } from "./NotificationCenter";
 

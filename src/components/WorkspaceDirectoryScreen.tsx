@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { WorkspaceCreationModal, WorkspaceData } from "./WorkspaceCreationModal";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { useWorkspaces } from "../hooks/useWorkspaces";
 
 export function WorkspaceDirectoryScreen() {

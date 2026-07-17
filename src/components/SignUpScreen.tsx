@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../services/supabase-client';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { useNavigate } from 'react-router';
 
 export function SignUpScreen() {

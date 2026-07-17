@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { energyLogsService } from '../services/supabase-service';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 export interface EnergyLog {
   id: string;
