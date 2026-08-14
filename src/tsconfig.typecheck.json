@@ -1,9 +1,13 @@
 {
   "extends": "./tsconfig.json",
-  "include": [
-    "vite-env.d.ts",
-    "services/supabase-client.ts",
-    "services/sentry-config.ts"
-  ],
-  "exclude": ["node_modules", "dist", "coverage", "supabase/functions/**"]
+  "include": ["vite-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "supabase/functions/**",
+    "lib/nudgeTemplates1351.ts",
+    "lib/selectNudge1351.ts",
+    "lib/nudgeSystemExample.ts"
+  ]
 }
