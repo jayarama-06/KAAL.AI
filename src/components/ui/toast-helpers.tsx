@@ -1,4 +1,4 @@
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { CheckCircle2, XCircle, AlertCircle, Info, Loader2 } from 'lucide-react';
 
 /**

@@ -18,7 +18,7 @@ import {
 import { useState, useEffect } from "react";
 import { SmartReminderModal } from "./SmartReminderModal";
 import { storageService, Reminder } from "../services/storage-service";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 export function RemindersScreen() {
   const [isModalOpen, setIsModalOpen] = useState(false);

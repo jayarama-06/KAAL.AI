@@ -6,7 +6,7 @@ import { MobileNavigation } from "./MobileNavigation";
 import { CommandPalette } from "./CommandPalette";
 import { DumpEverythingFAB } from "./DumpEverythingFAB";
 import { ProactiveAICoach } from "./ProactiveAICoach";
-import { Toaster } from "sonner@2.0.3";
+import { Toaster } from "sonner";
 
 interface AppLayoutProps {
   children: ReactNode;

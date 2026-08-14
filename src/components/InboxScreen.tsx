@@ -16,7 +16,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { useProfile } from "../context/ProfileContext";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 interface Signal {
   id: string;

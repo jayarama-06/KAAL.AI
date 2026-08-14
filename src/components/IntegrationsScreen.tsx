@@ -10,7 +10,7 @@ import {
   Sliders
 } from "lucide-react";
 import { useState } from "react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { copyToClipboard } from "../utils/clipboard";
 
 export function IntegrationsScreen() {

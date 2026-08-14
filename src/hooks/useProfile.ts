@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../services/supabase-client';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 /**
  * KAAL User Profile Hook

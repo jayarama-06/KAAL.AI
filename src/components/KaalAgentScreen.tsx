@@ -31,7 +31,7 @@ import { useTasks } from '../hooks/useTasks';
 import { storageService } from '../services/storage-service';
 import { supabase } from '../services/supabase-client';
 import { BrainDumpAgent } from './BrainDumpAgent';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 // ─── Font tokens ───────────────────────────────────────────────────────────────
 const F = {

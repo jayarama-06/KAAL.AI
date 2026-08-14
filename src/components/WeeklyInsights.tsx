@@ -14,7 +14,7 @@ import {
   ArrowLeft
 } from "lucide-react";
 import { useNavigate } from "react-router";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { useWeeklyInsights } from "../hooks/useWeeklyInsights";
 import { copyToClipboard } from "../utils/clipboard";
 

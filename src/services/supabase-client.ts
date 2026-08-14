@@ -18,7 +18,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     storage: typeof window !== 'undefined' ? window.localStorage : undefined,
   },
   realtime: { params: { eventsPerSecond: 10 } },
-  global:   { headers: { 'x-client-info': 'kaal-productivity-app@1.0.0' } },
+  global:   { headers: { 'x-client-info': 'kaal-productivity-app' } },
 });
 
 export type { SupabaseClient } from '@supabase/supabase-js';

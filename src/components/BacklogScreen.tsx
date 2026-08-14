@@ -12,7 +12,7 @@ import {
 import { AddBacklogModal } from "./AddBacklogModal";
 import { storageService, BacklogItem } from "../services/storage-service";
 import { createTask } from "../services/task-service";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { useProfile } from "../context/ProfileContext";
 import { NotificationCenter } from "./NotificationCenter";
 

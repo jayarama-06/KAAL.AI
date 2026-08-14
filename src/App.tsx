@@ -7,7 +7,7 @@ import { ProfileProvider } from "./context/ProfileContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { SmartInsightsPanel } from "./components/SmartInsightsPanel";
 import { SkipNavigation } from "./components/SkipNavigation";
-import { Toaster } from "sonner@2.0.3";
+import { Toaster } from "sonner";
 import * as Sentry from "@sentry/react";
 
 // ─── Error Boundary ───────────────────────────────────────────────────────────

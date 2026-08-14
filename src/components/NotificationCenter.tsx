@@ -11,7 +11,7 @@ import {
   Check,
   Trash2,
 } from "lucide-react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { storageService } from "../services/storage-service";
 import { useTasks } from "../hooks/useTasks";
 

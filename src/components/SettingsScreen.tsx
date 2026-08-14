@@ -4,7 +4,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useSettings } from "../context/SettingsContext";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { useNavigate } from "react-router";
 import { ScreenHeader, SCREEN_ANIMATIONS } from "./ui/ScreenHeader";
 import { NudgePreferences } from "./NudgePreferences";

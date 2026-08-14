@@ -8,7 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useProfile } from "../context/ProfileContext";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import {
   LayoutDashboard,
   CheckSquare,

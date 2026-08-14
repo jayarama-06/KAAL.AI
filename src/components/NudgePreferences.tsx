@@ -10,7 +10,7 @@ import {
   sendAutoNudge
 } from '../services/local-nudge-service';
 import { supabase } from '../services/supabase-client';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { motion, AnimatePresence } from 'motion/react';
 
 export function NudgePreferences() {

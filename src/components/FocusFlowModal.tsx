@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X, Plus, Search, MessageSquare, Code, Headphones, BellOff, Waves, Rocket } from "lucide-react";
 import { useNavigate } from "react-router";
 import { storageService } from "../services/storage-service";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 interface FocusFlowModalProps {
   isOpen: boolean;

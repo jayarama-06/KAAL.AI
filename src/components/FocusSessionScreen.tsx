@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Music, Maximize, X, Pause, Play, FileEdit, Check } from "lucide-react";
 import { NudgeSystem } from "./NudgeSystem";
 import { useNavigate } from "react-router";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { storageService } from "../services/storage-service";
 
 export function FocusSessionScreen() {

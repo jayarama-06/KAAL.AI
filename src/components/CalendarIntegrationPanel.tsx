@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Calendar, CheckCircle, AlertCircle, RefreshCw, Zap, Clock, Users } from "lucide-react";
 import { googleCalendar, type CalendarEvent } from "../services/google-calendar-service";
 import { supabase } from "../services/supabase-client";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 interface CalendarIntegrationPanelProps {
   userId: string;

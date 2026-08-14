@@ -3,7 +3,7 @@
 // Browser notification system using local template-based algorithm
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { supabase } from './supabase';
+import { supabase } from './supabase-client';
 import {
   UserContext,
   generateAutoNudge,
